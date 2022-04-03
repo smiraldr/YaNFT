@@ -1,0 +1,526 @@
+.scroller {
+    overflow-y: auto;
+    height:650px;
+}
+
+.ipadding {
+    padding-top: 8px;
+}
+
+.xpadding {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.brand-logo {
+    display: inline-flex !important;
+}
+
+.body {
+    overflow: hidden;
+    height: 100vh;
+    background-color: #00000e;
+  }
+  
+  .sub-section {
+    position: absolute;
+    z-index: 100;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #00000e;
+    opacity: 1;
+  }
+  
+  .sub-h1 {
+    margin-top: 7vh;
+    font-family: Poppins, sans-serif;
+    color: #fff;
+    font-size: 64px;
+    line-height: 80px;
+    letter-spacing: -0.04em;
+  }
+  
+  .container {
+    margin-top: 0vh;
+    padding-top: 0vh;
+  }
+  
+  .sub-h1-gradient {
+    background-image: -webkit-gradient(linear, left top, right top, from(#ff848b), to(#c757ff));
+    background-image: linear-gradient(90deg, #ff848b, #c757ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .sub-logo {
+    max-width: 180px;
+  }
+  
+  .sub-wrapper-1 {
+    width: 80%;
+    margin-top: 14vh;
+  }
+  
+  .image {
+    display: block;
+    width: 100vw;
+    height: 340px;
+    max-height: 400px;
+    max-width: 100vw;
+  }
+  
+  .sub-wrapper-2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100vw;
+    height: 340px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-image: url('../src/Background-Gradient.png');
+    background-position: 0px 0px;
+    background-size: cover;
+  }
+  
+  .sub-wrapper-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 80%;
+    margin-top: 56px;
+    padding-right: 34px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  
+  .sub-body-wrapper {
+    width: 64%;
+    line-height: 24px;
+  }
+  
+  .sub-cta-wrapper {
+    width: 30%;
+  }
+  
+  .sub-body-copy {
+    font-family: Poppins, sans-serif;
+    color: #000;
+    font-size: 18px;
+    letter-spacing: -0.8px;
+  }
+  
+  .sub-cta {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: #00000e;
+    text-decoration: none;
+  }
+  
+  .sub-next-btn {
+    margin-left: 12px;
+  }
+  
+  .text-block-copy {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-family: Poppins, sans-serif;
+    color: #fff;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    text-decoration: none;
+  }
+  
+  .sub-footer {
+    width: 80%;
+  }
+  
+  .text-block-copy {
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    letter-spacing: -0.8px;
+  }
+  
+  .sub-footer-text {
+    margin-bottom: 20px;
+    font-family: Poppins, sans-serif;
+    font-size: 13px;
+    letter-spacing: -0.4px;
+  }
+  
+  .text-span-2 {
+    font-weight: 700;
+  }
+  
+  .sub-cta-text {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-family: Poppins, sans-serif;
+    color: #fff;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  
+  .sub-app-body {
+    background-color: #00000e;
+  }
+  
+  .sub-app-section {
+    position: absolute;
+    z-index: 99;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    background-color: #00000e;
+  }
+  
+  .sub-app-wrapper-1 {
+    width: 70vw;
+    margin-top: 6em;
+    margin-left: 5vw;
+  }
+  
+  .sub-app-wrapper-2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 25vw;
+    height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-image: url('../src/Background-Gradient-2.png');
+    background-position: 100% 50%;
+    background-size: cover;
+  }
+  
+  .sub-app-h1 {
+    margin-top: 7vh;
+    font-family: Poppins, sans-serif;
+    color: #fff;
+    font-size: 64px;
+    line-height: 80px;
+    letter-spacing: -0.04em;
+  }
+  
+  .sub-h2 {
+    margin-top: 5vh;
+    font-family: Poppins, sans-serif;
+    color: #fff;
+    font-size: 44px;
+    line-height: 66px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  
+  .div-block {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 30px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  
+  .div-block-2 {
+    width: 45%;
+    margin-right: 24px;
+  }
+  
+  .div-block-3 {
+    width: 40%;
+  }
+  
+  .div-block-4 {
+    width: 88%;
+  }
+  
+  .sub-form-label {
+    margin-bottom: 8px;
+    font-family: Poppins, sans-serif;
+    color: #646464;
+    font-weight: 400;
+  }
+  
+  .sub-input-field {
+    height: 48px;
+    margin-bottom: 40px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3a3770;
+    background-color: hsla(0, 0%, 100%, 0);
+    font-family: Poppins, sans-serif;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .sub-input-field::-webkit-input-placeholder {
+    color: rgba(218, 214, 253, 0.25);
+  }
+  
+  .sub-input-field:-ms-input-placeholder {
+    color: rgba(218, 214, 253, 0.25);
+  }
+  
+  .sub-input-field::-ms-input-placeholder {
+    color: rgba(218, 214, 253, 0.25);
+  }
+  
+  .sub-input-field::placeholder {
+    color: rgba(218, 214, 253, 0.25);
+  }
+  
+  .submit-button {
+    padding: 16px 20px;
+    background-color: rgba(56, 152, 236, 0);
+    background-image: linear-gradient(198deg, #ff848b, #c757ff);
+    font-family: Poppins, sans-serif;
+    color: #000;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  
+  @media screen and (min-width: 1440px) {
+    .sub-h1 {
+      font-size: 72px;
+      line-height: 84px;
+    }
+  
+    .sub-wrapper-2 {
+      height: 420px;
+    }
+  
+    .sub-body-copy {
+      font-size: 21px;
+      line-height: 28px;
+    }
+  
+    .sub-next-btn {
+      margin-left: 20px;
+    }
+  
+    .text-block-copy {
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+  
+    .sub-footer-text {
+      font-size: 18px;
+    }
+  
+    .sub-cta-text {
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+  
+    .sub-app-h1 {
+      font-size: 72px;
+      line-height: 84px;
+    }
+  
+    .sub-form-label {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+  
+    .sub-input-field {
+      height: 56px;
+      font-size: 16px;
+      line-height: 21px;
+    }
+  
+    .submit-button {
+      padding: 20px 24px;
+      font-size: 20px;
+    }
+  }
+  
+  @media screen and (min-width: 1920px) {
+    .body {
+      overflow: visible;
+      height: 100vh;
+    }
+  
+    .sub-h1 {
+      font-size: 90px;
+      line-height: 110px;
+      letter-spacing: -0.02em;
+    }
+  
+    .sub-logo {
+      width: 300px;
+      max-width: 400px;
+    }
+  
+    .sub-wrapper-2 {
+      height: 600px;
+    }
+  
+    .sub-body-copy {
+      font-size: 28px;
+      line-height: 44px;
+    }
+  
+    .sub-next-btn {
+      width: 50px;
+    }
+  
+    .sub-footer-text {
+      margin-bottom: 32px;
+      font-size: 21px;
+    }
+  
+    .sub-cta-text {
+      font-size: 30px;
+      letter-spacing: 2px;
+    }
+  
+    .sub-app-section {
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+    }
+  
+    .sub-app-wrapper-1 {
+      height: auto;
+      margin-top: 8em;
+    }
+  
+    .sub-app-h1 {
+      font-size: 90px;
+      line-height: 110px;
+      letter-spacing: -0.02em;
+    }
+  
+    .sub-h2 {
+      font-size: 64px;
+      line-height: 110px;
+      letter-spacing: -0.02em;
+    }
+  
+    .sub-form-label {
+      font-size: 21px;
+      line-height: 32px;
+    }
+  
+    .sub-input-field {
+      height: 72px;
+      font-size: 21px;
+    }
+  
+    .submit-button {
+      margin-top: 24px;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      font-size: 28px;
+    }
+  }
+  
+  
