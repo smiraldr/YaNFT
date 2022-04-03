@@ -90,6 +90,7 @@ export default function Home() {
   }, [contractInfo.address]);
 
   const setErrorHandler = (val) => {
+      console.log("Inside Handler")
       setError(
         ErrorMessage({
           message: val,
@@ -162,11 +163,25 @@ export default function Home() {
       
       await contractObj.withdrawFees();
     } catch (error) {
-      await console.log(error.message)
-      // setErrorHandler(error.message)
+      try{
+        await console.log(error.data.message)
+        setErrorHandler(error.data.message)
+
+      }catch(error2){
+        setErrorHandler("something went wrong")
+      }
       
     }
   };
+
+  function chunkArray(arr,n){
+     var chunkLength = Math.max(arr.length/n ,1);
+     var chunks = [];
+     for (var i = 0; i < n; i++) {
+         if(chunkLength*(i+1)<=arr.length)chunks.push(arr.slice(chunkLength*i, chunkLength*(i+1)));
+     }
+     return chunks; 
+ }
 
   
 
@@ -186,7 +201,7 @@ export default function Home() {
               <label for="text" class="sub-form-label">Give your project a token name *</label>
               <input type="text" class="sub-input-field w-input nftsymbol" maxlength="256" name="nftsymbol" data-name="Email 2" placeholder="Eg: $MYNFT" id="nftsymbol" required=""></input>
               <label for="text" class="sub-form-label">Enter IPFS Base URI of your NFT collection/ project*</label>
-              <input type="text" class="sub-input-field w-input baseURI" maxlength="256" name="baseURI" data-name="Email 2" placeholder="Eg: $MYNFT" id="baseURI" required=""></input>
+              <input type="text" class="sub-input-field w-input baseURI" maxlength="256" name="baseURI" data-name="Email 2" placeholder="Eg: ipfs://.." id="baseURI" required=""></input>
               </div>
               <div class="div-block-3">
                 <label for="field-4" class="sub-form-label">Enter your NFT supply*</label>
@@ -202,7 +217,7 @@ export default function Home() {
                     <input type="radio" data-name="Radio 3" id="radio-3" name="radio" value="static" class="w-form-formradioinput radio-button w-radio-input exampleRadios"></input>
                     <span class="radio-lbl w-form-label" for="radio-3">No</span></label></div>
             </div>
-          </div><input type="submit" value="DEPLOY CONTRACT" data-wait="Please wait..." class="submit-button w-button"></input>
+          </div><input type="submit" value="DEPLOY CONTRACT" data-wait="Please wait..." class="submit-button"></input>
         </form>
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>
@@ -214,6 +229,7 @@ export default function Home() {
       <div class="div-block-8 mint"></div>
     </div>
   </div>
+<div clas="flex-display">
   <div id="app" class="sub-app-section withdraw-contract wf-section">
     <div class="sub-app-wrapper-1 withdraw-bloc">
       <div class="mint-grid">
@@ -221,8 +237,8 @@ export default function Home() {
         <form onSubmit={handleSetSlotURI}>
           <h2 class="sub-h2 mint-heading-copy">Withdraw funds</h2>
           <div class="contract-info">You can withdraw your funds from below</div>
-          <button class="mint w-inline-block">
-            <div class="text-block">Withdraw funds</div>
+          <button class="submit-button mint ">
+            <div class="text-block">WITHDRAW FUNDS</div>
           </button>
           </form>
         </div>
@@ -230,11 +246,19 @@ export default function Home() {
       <div class="div-block-8 mint"></div>
     </div>
   </div>
+  </div>
+
   <div id="app" class="sub-recent wf-section">
     <div class="sub-app-wrapper-3">
-      <h2 class="sub-h2">Recent Deployments</h2>
-      <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card">
-        <TxList txs={tableData} />
+      <h2 class="sub-h2">NFT Contract Deployments</h2>
+      <div class="w-layout-grid grid">
+        <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card-main">
+        <TxList txs={chunkArray(tableData,[2])[1]} />
+        </div>
+        
+        <div id="w-node-_5f9e2abd-4801-26ba-696e-77b214c9096f-08db29d9" class="info-card-main">
+        <TxList txs={chunkArray(tableData,[2])[0]} />
+        </div>
       </div>
     </div>
   </div>

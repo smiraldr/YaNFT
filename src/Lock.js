@@ -35,7 +35,9 @@ export default function Lock() {
     balance: "-",
   });
   const [tableData, setTableData] = useState([]);
-  let totalVote = 0;
+  let totalVote2 = 0
+  let totalVote = 0
+
   useEffect(() => {
     client
       .query({
@@ -125,7 +127,7 @@ export default function Lock() {
           await contractObj.lockNFT(data.get("nftaddress"),data.get("tokenid"));
     }
     } catch (error) {
-      await console.log(error.message)
+      await console.log(error.data.message)
       // setErrorHandler(error.message)
       
     }
@@ -166,7 +168,14 @@ export default function Lock() {
     }
   };
 
-  
+  function chunkArray(arr,n){
+    var chunkLength = Math.max(arr.length/n ,1);
+    var chunks = [];
+    for (var i = 0; i < n; i++) {
+        if(chunkLength*(i+1)<=arr.length)chunks.push(arr.slice(chunkLength*i, chunkLength*(i+1)));
+    }
+    return chunks; 
+}
 
 
   return (
@@ -174,23 +183,23 @@ export default function Lock() {
 
 <div id="app" class="sub-app-section wf-section">
     <div class="sub-app-wrapper-1">
-      <h2 class="sub-h2">Lock NFT for voting power</h2>
       <div class="w-form">
         <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" onSubmit={handleLocktNFT}>
           <div class="div-block">
-            <div class="div-block-2">
-              <label for="text" class="sub-form-label">Enter your NFT collection/ project name*</label>
+            <div class="lock-div">
+            <h2 class="sub-h2">Lock your NFT for voting power</h2>
+              <label for="text" class="sub-form-label">Enter your NFT address *</label>
               <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="nftaddress" data-name="Name 2" placeholder="NFT Address" id="nftaddress" required=""></input>
-              <label for="text" class="sub-form-label">Give your project a token name *</label>
+              <label for="text" class="sub-form-label">Enter Token ID of your NFT *</label>
               <input type="text" class="sub-input-field w-input nftsymbol" maxlength="256" name="tokenid" data-name="Email 2" placeholder="TokenID of NFT" id="tokenid" required=""></input>
               
             </div>
-            
           </div>
-          <input type="submit" onClick={() => (state.button = 1)} value="APPROVE" data-wait="Please wait..." class="submit-button w-button"></input>
+          <div class="submit-btn-flex">
+          <input type="submit" onClick={() => (state.button = 1)} value="APPROVE" data-wait="Please wait..." class="submit-button w-button lock"></input>
           <br></br>
-          <input type="submit" onClick={() => (state.button = 2)} value="LOCK NFT" data-wait="Please wait..." class="submit-button w-button"></input>
-        </form>
+          <input type="submit" onClick={() => (state.button = 2)} value="LOCK NFT" data-wait="Please wait..." class="submit-button w-button lock"></input>
+        </div></form>
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>
         </div>
@@ -206,39 +215,51 @@ export default function Lock() {
       <div class="mint-grid">
         <div class="withdraw">
         <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" onSubmit={handleUnLocktNFT}>
+
           <div class="div-block">
-            <div class="div-block-2">
-              <label for="text" class="sub-form-label">Enter your NFT collection/ project name*</label>
+          <div class="lock-div">
+            <h2 class="sub-h2">Unlock Your NFT</h2>
+              <label for="text" class="sub-form-label">Enter your NFT address *</label>
               <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="nftaddress" data-name="Name 2" placeholder="NFT Address" id="nftaddress" required=""></input>
-              <label for="text" class="sub-form-label">Give your project a token name *</label>
+              <label for="text" class="sub-form-label">Enter Token ID of your NFT *</label>
               <input type="text" class="sub-input-field w-input nftsymbol" maxlength="256" name="tokenid" data-name="Email 2" placeholder="TokenID of NFT" id="tokenid" required=""></input>
-              
+              <input type="submit" onClick={() => (state.button = 2)} value="UNLOCK NFT" data-wait="Please wait..." class="submit-button w-button"></input>
+
             </div>
-            
           </div>
-          <input type="submit" onClick={() => (state.button = 2)} value="UNLOCK NFT" data-wait="Please wait..." class="submit-button w-button"></input>
         </form>
         </div>
       </div>
       <div class="div-block-8 mint"></div>
     </div>
   </div>
+
   <div id="app" class="sub-recent wf-section">
     <div class="sub-app-wrapper-3">
-      <h2 class="sub-h2">Voting Power</h2>
-      <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card">
+      <h2 class="sub-h2">Voting Powers</h2>
+      <div class="w-layout-grid grid">
+        <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card-main">
         {console.log(tableData)}
-        <TxList2 txs={tableData} />
+        <TxList2 txs={chunkArray(tableData,[2])[1]} />
+       
+        </div>
+        
+        <div id="w-node-_5f9e2abd-4801-26ba-696e-77b214c9096f-08db29d9" class="info-card-main">
+        {console.log(tableData)}
+        <TxList2 txs={chunkArray(tableData,[2])[0]} />
         {
-            tableData.forEach(element => {
-                totalVote+=element["votingPower"]
-            })
+          tableData.forEach(element => {
+            totalVote = BigNumber(totalVote).plus(BigNumber(element["votingPower"])).toString()
+            
+          })
         }
-        <h2>Total Voting Power : {(Number(totalVote)/(10**18)).toString()}</h2>
+        
+        </div>
+        <h2 class="alt-h3">Total Voting Power : {(Number(totalVote)/(10**18)).toString()}</h2>
+        
       </div>
     </div>
   </div>
-
         
 
         {

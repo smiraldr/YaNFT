@@ -18,7 +18,7 @@ export default function Home() {
   
   return (
     <>
-  <div id="home" class="sub-section wf-section">
+  <div id="home" class="sub-section sec-width">
     <div class="sub-wrapper-1">
       <h1 class="sub-h1">Deploy <span class="sub-h1-gradient">no-code, low-gas </span>NFT ERC-721 smart contract</h1>
     </div>
@@ -33,9 +33,8 @@ export default function Home() {
                 pathname: `/deploy`
               }}
                 >
-          <a href="create.html" class="sub-cta w-inline-block">
-            <div class="sub-cta-text">LAUNCH APP</div><img src="public/Next.svg" loading="lazy" alt="" class="sub-next-btn"></img>
-          </a></Link>
+          <a href="create.html" class="sub-cta ">
+            <div class="sub-cta-text">LAUNCH APP</div></a></Link>
         </div>
       </div>
       <div class="sub-footer">

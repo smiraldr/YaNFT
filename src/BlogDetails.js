@@ -42,6 +42,24 @@ const BlogDetails = () => {
     }
   };
   
+  const handleUpdateNFT = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    await console.log("Nft contract : ",state.contractAddress)
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = await provider.getSigner();
+
+    const contractObj = new ethers.Contract(state.contractAddress,erc721abi,signer);
+    try {
+      
+      await contractObj.setNewBaseURI(data.get("baseuri"));
+    } catch (error) {
+      await console.log(error.message)
+      
+    }
+  };
+  
   const handleWithdrawFee = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -72,7 +90,7 @@ const BlogDetails = () => {
               <h2 class="sub-h2 mint-heading">Mint an NFT</h2>
               <div class="mint-input"><label for="name-2" class="sub-form-label">Enter your NFT collection/ project name*</label>
               <input type="text" class="sub-input-field w-input" maxlength="256" name="nftid" data-name="Name 2" placeholder="Eg. 2,3,4" id="name-2" required=""></input></div>
-              <input type="submit" name="create bet" value="Create bet" data-wait="Please wait..." class="submit-button w-button"></input>
+              <input type="submit" name="create bet" value="Mint NFT" data-wait="Please wait..." class="submit-button w-button"></input>
             </form>
             <div class="w-form-done">
               <div>Thank you! Your submission has been received!</div>
@@ -110,6 +128,22 @@ const BlogDetails = () => {
           <form onSubmit={handleWithdrawFee}>
           <button class="mint w-inline-block" name="create bet" value="create bet">
             <div class="text-block">Withdraw your funds</div></button>
+            </form>
+        </div>
+      </div>
+      <div class="div-block-8 mint"></div>
+    </div>
+  </div>
+  <div id="app" class="sub-app-section withdraw-page wf-section">
+    <div class="sub-app-wrapper-1 withdraw-bloc">
+      <div class="mint-grid">
+        <div class="withdraw">
+          <h2 class="sub-h2 mint-heading-copy">Want To reveal NFT Art ?</h2>
+          <div class="contract-info">You can update base URI to reveal ART here(only for owner)</div>
+          <form onSubmit={handleUpdateNFT}>
+          <input type="text" class="sub-input-field w-input" maxlength="256" name="baseuri" data-name="Name 2" placeholder="ipfs://..." id="name-2" required=""></input>
+          <button class="mint w-inline-block" name="create bet" value="create bet">
+            <div class="text-block">Update Base URI</div></button>
             </form>
         </div>
       </div>

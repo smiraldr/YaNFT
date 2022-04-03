@@ -35,6 +35,7 @@ export default function Vote() {
     balance: "-",
   });
   const [tableData, setTableData] = useState([]);
+  const [totalFunds, setTotalFunds] = useState("0");
   let totalVote = 0;
   useEffect(() => {
     client
@@ -57,6 +58,17 @@ export default function Vote() {
       })
       .then((result) => {
         setTableData([...result.data.proposalEntities]);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    
+    const contractObj = new ethers.Contract(CONTRACT_ADDRESS,factoryabi,provider);
+    contractObj.projectFund()
+      .then((result) => {
+        setTotalFunds(result.toString());
       });
   }, []);
 
@@ -193,81 +205,68 @@ export default function Vote() {
     }
   };
   
-
+  function chunkArray(arr,n){
+    var chunkLength = Math.max(arr.length/n ,1);
+    var chunks = [];
+    for (var i = 0; i < n; i++) {
+        if(chunkLength*(i+1)<=arr.length)chunks.push(arr.slice(chunkLength*i, chunkLength*(i+1)));
+    }
+    return chunks; 
+}
 
   return (
     <>
 
 <div id="app" class="sub-app-section wf-section">
     <div class="sub-app-wrapper-1">
-      <h2 class="sub-h2">Fund another project</h2>
       <div class="w-form">
-        <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" onSubmit={handleAddProposal}>
-          <div class="div-block">
-            <div class="div-block-2">
+          <div class="add-vote">
+            <div class="add-proposal">
+            <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form2" onSubmit={handleAddProposal}>
+            <h2 class="sub-h2 alt-h2">Fund another project</h2>
               <label for="text" class="sub-form-label">Project to be funded</label>
-              <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="projaddress" data-name="Name 2" placeholder="NFT Address" id="projaddress" required=""></input>
+              <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="projaddress" data-name="Name 2" placeholder="Address of Project Owner" id="projaddress" required=""></input>
               <label for="text" class="sub-form-label">Amount to be funded</label>
-              <input type="text" class="sub-input-field w-input nftsymbol" maxlength="256" name="projamount" data-name="Email 2" placeholder="TokenID of NFT" id="projamount" required=""></input>
-              
+              <input type="text" class="sub-input-field w-input nftsymbol" maxlength="256" name="projamount" data-name="Email 2" placeholder="Amount to be funded" id="projamount" required=""></input>
+              <input type="submit" onClick={() => (state.button = 2)} value="ADD PROPOSAL" data-wait="Please wait..." class="submit-button w-button"></input>
+            </form>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+              </div>
+              <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
+              </div>
             </div>
+            <div class="vote-proposal">
             
+            <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form2" onSubmit={handlePropVote}>
+            <h2 class="sub-h2 alt-h2">Vote on Proposal</h2>
+              <label for="text" class="sub-form-label">Proposal ID to vote</label>
+              <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="propvote" data-name="Name 2" placeholder="Proposal ID" id="propvote" required=""></input>
+              <input type="submit" onClick={() => (state.button = 2)} value="VOTE PROPOSAL" data-wait="Please wait..." class="submit-button w-button"></input>
+             </form>
+
           </div>
-          
-          <input type="submit" onClick={() => (state.button = 2)} value="ADD PROPOSAL" data-wait="Please wait..." class="submit-button w-button"></input>
-        </form>
-        <div class="w-form-done">
-          <div>Thank you! Your submission has been received!</div>
-        </div>
-        <div class="w-form-fail">
-          <div>Oops! Something went wrong while submitting the form.</div>
-        </div>
-      </div>
+          </div>
+          </div>
       <div class="div-block-8 mint"></div>
     </div>
+    <h2 class="alt-h3">Community Funds : {(Number(totalFunds)/(10**18)).toString()} ETH</h2>
   </div>
+
+
+  
   <div id="app" class="sub-app-section withdraw-contract wf-section">
-  <div class="sub-app-wrapper-1">
-      <h2 class="sub-h2">Vote on Proposal</h2>
-      <div class="w-form">
-        <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" onSubmit={handlePropVote}>
-          <div class="div-block">
-            <div class="div-block-2">
-              <label for="text" class="sub-form-label">Project ID to vote</label>
-              <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="propvote" data-name="Name 2" placeholder="NFT Address" id="propvote" required=""></input>
-             
-              
-            </div>
-            
-          </div>
-          
-          <input type="submit" onClick={() => (state.button = 2)} value="VOTE PROPOSAL" data-wait="Please wait..." class="submit-button w-button"></input>
-        </form>
-        <div class="w-form-done">
-          <div>Thank you! Your submission has been received!</div>
-        </div>
-        <div class="w-form-fail">
-          <div>Oops! Something went wrong while submitting the form.</div>
-        </div>
-      </div>
-      <div class="div-block-8 mint"></div>
-    </div>
-  </div>
-  <div id="app" class="sub-app-section wf-section">
-  <div class="sub-app-wrapper-1">
-      <h2 class="sub-h2">Execute Proposal(only for owner)</h2>
-      <div class="w-form">
-        <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" onSubmit={handleExecuteVote}>
+  <div class="sub-app-wrapper-1 withdraw-bloc">
+      <div class="w-form execute">
+        <form id="email-form" name="email-form" data-name="Email Form" method="get" class=" execute-form" onSubmit={handleExecuteVote}>
+        <h2 class="sub-h2">Execute Proposal(only for owner)</h2>
           <div class="div-block">
             <div class="div-block-2">
               <label for="text" class="sub-form-label">Project ID to execute</label>
               <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="propvote" data-name="Name 2" placeholder="NFT Address" id="propvote" required=""></input>
-             
-              
             </div>
-            
-          </div>
-          
+          </div>    
           <input type="submit" onClick={() => (state.button = 2)} value="EXECUTE PROPOSAL" data-wait="Please wait..." class="submit-button w-button"></input>
         </form>
         <div class="w-form-done">
@@ -280,16 +279,25 @@ export default function Vote() {
       <div class="div-block-8 mint"></div>
     </div>
   </div>
+   
+  
   <div id="app" class="sub-recent wf-section">
     <div class="sub-app-wrapper-3">
-      <h2 class="sub-h2">Voting Power</h2>
-      <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card">
+      <h2 class="sub-h2">Proposals Posted</h2>
+      <div class="w-layout-grid grid">
+        <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card-main">
         {console.log(tableData)}
-        <TxList3 txs={tableData} />
+        <TxList3 txs={chunkArray(tableData,[2])[1]} />
+        </div>
         
+        <div id="w-node-_5f9e2abd-4801-26ba-696e-77b214c9096f-08db29d9" class="info-card-main">
+        {console.log(tableData)}
+        <TxList3 txs={chunkArray(tableData,[2])[0]} />
+        </div>
       </div>
     </div>
   </div>
+
 
         
 

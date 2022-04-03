@@ -205,7 +205,14 @@ export default function Poap() {
     }
   };
 
-  
+  function chunkArray(arr,n){
+    var chunkLength = Math.max(arr.length/n ,1);
+    var chunks = [];
+    for (var i = 0; i < n; i++) {
+        if(chunkLength*(i+1)<=arr.length)chunks.push(arr.slice(chunkLength*i, chunkLength*(i+1)));
+    }
+    return chunks; 
+}
 
 
   return (
@@ -222,17 +229,19 @@ export default function Poap() {
               <input type="text" class="sub-input-field w-input nftname" maxlength="256" name="nftname" data-name="Name 2" placeholder="Eg. MY NFT Project" id="nftname" required=""></input>
               <label for="text" class="sub-form-label">Give your project a token name *</label>
               <input type="text" class="sub-input-field w-input nftsymbol" maxlength="256" name="nftsymbol" data-name="Email 2" placeholder="Eg: $MYNFT" id="nftsymbol" required=""></input>
-              <label for="text" class="sub-form-label">Enter IPFS Base URI of your NFT collection/ project*</label>
-              <input type="file" class="sub-input-field w-input baseURI" maxlength="256" name="FormFile" data-name="Email 2" placeholder="Eg: $MYNFT" id="FormFile" required=""></input>
               </div>
               <div class="div-block-3">
                 <label for="field-4" class="sub-form-label">Enter your NFT supply*</label>
                 <input type="text" class="sub-input-field w-input nftlimit" maxlength="256" name="nftlimit" data-name="Field 3" placeholder="Eg: 8888 or 10000" id="nftlimit" required=""></input>
                 <label for="field-4" class="sub-form-label">Enter price of each NFT *</label>
                 <input type="text" class="sub-input-field w-input nftamount" maxlength="256" name="nftamount" data-name="Field 2" placeholder="Eg: 0.1 ETH, 0.08 ETH" id="nftamount" required=""></input>
-                
             </div>
-          </div><input type="submit" value="DEPLOY CONTRACT" data-wait="Please wait..." class="submit-button w-button"></input>
+          </div>
+          <div class="ipfs-input">
+          <label for="text" class="sub-form-label">Enter IPFS Base URI of your NFT collection/ project*</label>
+          <input type="file" class="sub-input-field w-input baseURI choose-file" maxlength="256" name="FormFile" data-name="Email 2" placeholder="Eg: $MYNFT" id="FormFile" required=""></input>
+          </div>
+          <input type="submit" value="DEPLOY CONTRACT" data-wait="Please wait..." class="submit-button w-button"></input>
         </form>
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>
@@ -252,7 +261,7 @@ export default function Poap() {
           <h2 class="sub-h2 mint-heading-copy">Withdraw funds</h2>
           <div class="contract-info">You can withdraw your funds from below</div>
           <button class="mint w-inline-block">
-            <div class="text-block">Withdraw funds</div>
+            <div class="text-block">WITHDRAW FUNDS</div>
           </button>
           </form>
         </div>
@@ -263,12 +272,17 @@ export default function Poap() {
   <div id="app" class="sub-recent wf-section">
     <div class="sub-app-wrapper-3">
       <h2 class="sub-h2">Recent Deployments</h2>
-      <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card">
-        <TxList txs={tableData} />
+      <div class="w-layout-grid grid">
+        <div id="w-node-_5c0edcd0-be75-3544-4a1a-61ea9d6c71eb-08db29d9" class="info-card-main">
+        <TxList txs={chunkArray(tableData,[2])[1]} />
+        </div>
+        
+        <div id="w-node-_5f9e2abd-4801-26ba-696e-77b214c9096f-08db29d9" class="info-card-main">
+        <TxList txs={chunkArray(tableData,[2])[0]} />
+        </div>
       </div>
     </div>
   </div>
-
         
 
         {

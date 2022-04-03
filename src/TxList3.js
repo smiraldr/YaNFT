@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import BigNumber from "big-number";
 
 export default function TxList3({ txs }) {
-  if (txs.length === 0) return null;
+  if (txs === undefined || txs.length === 0) return null;
   return (
     <>
       {txs
@@ -15,7 +15,7 @@ export default function TxList3({ txs }) {
           <p class="contract-info">Fund Amount: {(Number(item.fundAmount)/(10**18)).toString()} ETH</p>
           <p class="contract-info">Proposal Status: {item.proposalStatus}</p>
           {console.log(item.voteCount)}
-          <p class="contract-info">Vote Count: {(Number(item.voteCount)/(10**18)).toString()} Veth</p>
+          <p class="contract-info">Vote Count: {(Number(item.voteCount)/(10**18)).toString()} YaETH</p>
           
           </div>
         </div>

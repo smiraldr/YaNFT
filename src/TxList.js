@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import BigNumber from "big-number";
 
 export default function TxList({ txs }) {
-  if (txs.length === 0) return null;
+  if (txs === undefined || txs.length === 0) return null;
   return (
     <>
       {txs
@@ -25,7 +25,7 @@ export default function TxList({ txs }) {
                   nftcontractdata: item,
                 }}}
                 >
-            <div class="text-block">Mint NFTs from this Project</div>
+            <div class="text-block mint-nft-btn">MINT NFTS FROM THIS PROJECT</div>
             </Link></div>
         </div>
           
