@@ -13,15 +13,7 @@ export default function TxList2({ txs }) {
           <p class="contract-info">User Address: {item.userAddress}</p>
           <p class="contract-info">Voting Powers: {(Number(item.votingPower)/(10**18)).toString()} YaETH</p>
           
-          <Link variant="body2" class="mint w-inline-block"
-              to={{
-                pathname: `/blogs/${item.id}`,
-                state: {
-                  nftcontractdata: item,
-                }}}
-                >
-            <div class="text-block">Mint NFTs from this Project</div>
-            </Link></div>
+          </div>
         </div>
           
         ))}
